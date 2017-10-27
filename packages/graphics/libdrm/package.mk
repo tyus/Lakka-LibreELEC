@@ -35,6 +35,7 @@ get_graphicdrivers
 
 DRM_CONFIG="--disable-libkms --disable-intel --disable-radeon --disable-amdgpu"
 DRM_CONFIG="$DRM_CONFIG --disable-nouveau --disable-vmwgfx"
+DRM_CONFIG="$DRM_CONFIG --disable-freedreno"
 
 for drv in $GRAPHIC_DRIVERS; do
   [ "$drv" = "i915" -o "$drv" = "i965" ] && \
@@ -53,6 +54,9 @@ for drv in $GRAPHIC_DRIVERS; do
   [ "$drv" = "vmware" ] && \
     DRM_CONFIG=`echo $DRM_CONFIG | sed -e 's/disable-libkms/enable-libkms/'` && \
     DRM_CONFIG=`echo $DRM_CONFIG | sed -e 's/disable-vmwgfx/enable-vmwgfx/'`
+
+  [ "$drv" = "freedreno" ] && \
+    DRM_CONFIG=`echo $DRM_CONFIG | sed -e 's/disable-freedreno/enable-freedreno/'`
 done
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-udev \

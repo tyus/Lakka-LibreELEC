@@ -91,6 +91,11 @@ case "$LINUX" in
     PKG_VERSION="4.13.9"
     PKG_URL="http://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     ;;
+  db410c)
+    PKG_VERSION="8165c999"
+    PKG_URL="https://git.linaro.org/landing-teams/working/qualcomm/kernel.git/snapshot/$PKG_VERSION.tar.xz"
+    PKG_SOURCE_DIR="$PKG_VERSION*"
+    ;;
   *)
     PKG_VERSION="4.11.12"
     PKG_URL="http://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"

@@ -67,7 +67,7 @@ elif [ "$OPENGLES" == "mali-rockchip" ]; then
   RETROARCH_GL="--enable-opengles --enable-kms --disable-x11 --disable-wayland"
 elif [ "$OPENGLES" == "allwinner-fb-mali" ]; then
    RETROARCH_GL="--enable-opengles --disable-kms --disable-x11 --enable-mali_fbdev"
-elif [ "$OPENGLES" == "allwinner-mali" ]; then
+elif [ "$OPENGLES" == "allwinner-mali" ] || [ "$OPENGLES" == "mesa" ]; then
    RETROARCH_GL="--enable-opengles --enable-kms --disable-x11"
 fi
 
