@@ -111,8 +111,13 @@ if [ "$TARGET_KERNEL_ARCH" = "arm64" -a "$TARGET_ARCH" = "arm" ]; then
   export PATH=$TOOLCHAIN/lib/gcc-linaro-aarch64-elf/bin/:$PATH
   TARGET_PREFIX=aarch64-elf-
   PKG_MAKE_OPTS_HOST="ARCH=$TARGET_ARCH headers_check"
-else
- PKG_MAKE_OPTS_HOST="ARCH=$TARGET_KERNEL_ARCH headers_check"
+ elif  [ "$PROJECT" = "Dragonboard" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-gnu:host"
+  export PATH=$TOOLCHAIN/lib/gcc-linaro-aarch64-gnu/bin/:$PATH
+  TARGET_PREFIX=aarch64-linux-gnu-
+  PKG_MAKE_OPTS_HOST="ARCH=$TARGET_ARCH headers_check"
+ else
+  PKG_MAKE_OPTS_HOST="ARCH=$TARGET_KERNEL_ARCH headers_check"
 fi
 
 if [ "$TARGET_ARCH" = "x86_64" ]; then
