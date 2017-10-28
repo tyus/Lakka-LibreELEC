@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="db410c-firmware"
-PKG_VERSION="r1032.1"
+PKG_VERSION="r1032.1.1"
 PKG_ARCH="aarch64"
 PKG_LICENSE="proprietary"
 PKG_SITE="https://developer.qualcomm.com/"
@@ -44,7 +44,6 @@ make_target() {
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/firmware/
     cp -a linux-board-support-package-v${PKG_VERSION%.0}/proprietary-linux/* $INSTALL/usr/lib/firmware
-    rm $INSTALL/usr/lib/firmware/firmware.tar
 
   MTOOLS_SKIP_CHECK=1 mcopy -n -i linux-board-support-package-v${PKG_VERSION%.0}/bootloaders-linux/NON-HLOS.bin \
     ::image/modem.* ::image/mba.mbn ::image/wcnss.* $INSTALL/usr/lib/firmware/
