@@ -97,9 +97,8 @@ case "$LINUX" in
     PKG_SOURCE_DIR="$PKG_VERSION*"
     ;;
   db410c-ml)
-    PKG_VERSION="4.14.rc6"
-    PKG_URL="http://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
-    PKG_PATCH_DIRS="default"
+    PKG_VERSION="4.14-rc7"
+    PKG_URL="https://github.com/torvalds/linux/archive/v$PKG_VERSION.tar.gz"
     ;;
   *)
     PKG_VERSION="4.11.12"
