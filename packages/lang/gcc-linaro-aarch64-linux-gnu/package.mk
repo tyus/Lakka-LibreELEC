@@ -17,16 +17,13 @@
 ################################################################################
 
 PKG_NAME="gcc-linaro-aarch64-linux-gnu"
-PKG_VERSION="6.3.1-2017.02"
-PKG_VERSION_SHORT="6.3-2017.02"
-PKG_REV="1"
+PKG_VERSION="7.1.1-2017.08"
+PKG_SHA256="cc61203bb1bab9b51e9631dce803be7c00b814577fd7a118113a83448bf6a833"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
-PKG_URL="https://releases.linaro.org/components/toolchain/binaries/${PKG_VERSION_SHORT}/aarch64-linux-gnu/gcc-linaro-${PKG_VERSION}-x86_64_aarch64-linux-gnu.tar.xz"
+PKG_URL="https://releases.linaro.org/components/toolchain/binaries/7.1-2017.08/aarch64-linux-gnu/gcc-linaro-${PKG_VERSION}-x86_64_aarch64-linux-gnu.tar.xz"
 PKG_SOURCE_DIR="gcc-linaro-${PKG_VERSION}-x86_64_aarch64-linux-gnu"
-PKG_DEPENDS_HOST="toolchain"
-PKG_PRIORITY="optional"
 PKG_SECTION="lang"
 PKG_SHORTDESC=""
 PKG_LONGDESC=""
@@ -39,6 +36,7 @@ make_host() {
 }
 
 makeinstall_host() {
-  mkdir -p ${TOOLCHAIN}/lib/gcc-linaro-aarch64-linux-gnu/
-  cp -a * ${TOOLCHAIN}/lib/gcc-linaro-aarch64-linux-gnu
+  mkdir -p $TOOLCHAIN/lib/gcc-linaro-aarch64-linux-gnu/
+    cp -a * $TOOLCHAIN/lib/gcc-linaro-aarch64-linux-gnu
 }
+
