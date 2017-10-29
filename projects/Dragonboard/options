@@ -55,7 +55,7 @@
     UBOOT_CONFIGFILE=""
 
   # Kernel target
-    KERNEL_TARGET="Image"
+    KERNEL_TARGET="Image.gz"
 
   # Kernel extra targets to build
     KERNEL_UBOOT_EXTRA_TARGET=""
@@ -70,14 +70,14 @@
     KERNEL_DTB_DIRECTORY="arch/arm64/boot/dts/qcom"
 
   # Kernel cmdline parameters
-    KERNEL_CMDLINE="root=/dev/ram0 rdinit=/init boot=/dev/mmcblk0p22 disk=/dev/mmcblk0p29 BOOT_IMAGE=/dev/mmcblk0p19 rw rootwait console=ttyMSM0,115200n8"
+    KERNEL_CMDLINE="root=/dev/ram0 rdinit=/init boot=/dev/mmcblk1p1 disk=/dev/mmcblk1p2 BOOT_IMAGE=/dev/mmcblk0p8 console=ttyMSM0,115200n8 rw rootwait"
 
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD="dtbs"
 
   # Kernel to use. values can be:
   # default:  default mainline kernel
-    LINUX="db410c"
+    LINUX="db410c-ml"
 
 
 ################################################################################

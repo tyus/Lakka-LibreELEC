@@ -96,6 +96,11 @@ case "$LINUX" in
     PKG_URL="https://git.linaro.org/landing-teams/working/qualcomm/kernel.git/snapshot/$PKG_VERSION.tar.xz"
     PKG_SOURCE_DIR="$PKG_VERSION*"
     ;;
+  db410c-ml)
+    PKG_VERSION="4.14.rc6"
+    PKG_URL="http://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
+    PKG_PATCH_DIRS="default"
+    ;;
   *)
     PKG_VERSION="4.11.12"
     PKG_URL="http://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
@@ -110,11 +115,6 @@ if [ "$TARGET_KERNEL_ARCH" = "arm64" -a "$TARGET_ARCH" = "arm" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-elf:host"
   export PATH=$TOOLCHAIN/lib/gcc-linaro-aarch64-elf/bin/:$PATH
   TARGET_PREFIX=aarch64-elf-
-  PKG_MAKE_OPTS_HOST="ARCH=$TARGET_ARCH headers_check"
- elif  [ "$PROJECT" = "Dragonboard" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-gnu:host"
-  export PATH=$TOOLCHAIN/lib/gcc-linaro-aarch64-gnu/bin/:$PATH
-  TARGET_PREFIX=aarch64-linux-gnu-
   PKG_MAKE_OPTS_HOST="ARCH=$TARGET_ARCH headers_check"
  else
   PKG_MAKE_OPTS_HOST="ARCH=$TARGET_KERNEL_ARCH headers_check"
