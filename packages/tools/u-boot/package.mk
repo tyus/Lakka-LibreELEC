@@ -45,6 +45,12 @@ elif [ "$UBOOT_VERSION" = "allwinner" ]; then
   PKG_VERSION="2017.09"
   PKG_SITE="http://www.denx.de/wiki/U-Boot/WebHome"
   PKG_URL="ftp://ftp.denx.de/pub/u-boot/u-boot-$PKG_VERSION.tar.bz2"
+elif [ "$UBOOT_VERSION" = "dragonboard" ]; then
+  PKG_VERSION="2017.09"
+  PKG_SITE="http://www.denx.de/wiki/U-Boot/WebHome"
+  PKG_URL="ftp://ftp.denx.de/pub/u-boot/u-boot-$PKG_VERSION.tar.bz2"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dtc:host"
+  PKG_PATCH_DIRS="db410c"
 else
   exit 0
 fi
@@ -57,9 +63,9 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 if [ "$TARGET_KERNEL_ARCH" = "arm64" -a "$TARGET_ARCH" = "arm" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-elf:host"
-  export PATH=$TOOLCHAIN/lib/gcc-linaro-aarch64-elf/bin:$PATH
-  TARGET_PREFIX=aarch64-elf-
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-linux-gnu:host"
+  export PATH=$TOOLCHAIN/lib/gcc-linaro-aarch64-linux-gnu/bin/:$PATH
+  TARGET_PREFIX=aarch64-linux-gnu-
 fi
 
 pre_configure_target() {

@@ -46,7 +46,7 @@
     BOOTLOADER="u-boot"
 
   # u-boot version to use (default)
-    UBOOT_VERSION="allwinner"
+    UBOOT_VERSION="dragonboard"
 
   # Configuration for u-boot
     UBOOT_CONFIG="dragonboard410c_defconfig"
