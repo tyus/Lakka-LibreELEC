@@ -272,6 +272,16 @@ else
 fi
 chmod 0644 $TARGET_IMG/$IMAGE_NAME.kernel
 
+# extract libretro cores from system to fat32 if needed
+LIBRETRO_TMP="target/libretro_tmp/$IMAGE_NAME"
+if [ "$PROJECT" = "Switch" ]; then
+  mkdir -p $LIBRETRO_TMP
+  
+  cp -R $BUILD/image/system/usr/lib/libretro/* $LIBRETRO_TMP/
+  
+  rm -rf $BUILD/image/system/usr/lib/libretro
+fi
+
 # create squashfs file, default to gzip if no compression configured
 echo "rm -rf \"$TARGET_IMG/$IMAGE_NAME.system\"" >> $FAKEROOT_SCRIPT
 echo "$TOOLCHAIN/bin/mksquashfs \"$BUILD/image/system\" \"$TARGET_IMG/$IMAGE_NAME.system\" -noappend -comp ${SQUASHFS_COMPRESSION:-gzip}" >> $FAKEROOT_SCRIPT
@@ -354,6 +364,13 @@ if [ "$1" = "release" -o "$1" = "mkimage" -o "$1" = "amlpkg" -o "$1" = "noobs" ]
 
   if [ "$PROJECT" = "Switch" ]; then
     mkdir -p $RELEASE_DIR/lakka/storage
+    
+    LIBRETRO_DIR=$RELEASE_DIR/lakka/libretro
+    
+    mkdir -p $LIBRETRO_DIR
+    cp -R $LIBRETRO_TMP/* $LIBRETRO_DIR/
+    rm -rf $LIBRETRO_TMP
+    
     cp $TARGET_IMG/$IMAGE_NAME.system $RELEASE_DIR/lakka/SYSTEM
     cp $TARGET_IMG/$IMAGE_NAME.kernel $RELEASE_DIR/lakka/KERNEL
   else

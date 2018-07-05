@@ -114,8 +114,8 @@ makeinstall_target() {
   
   # General configuration
   if [ "$PROJECT" = "Switch" ]; then
-  	sed -i -e "s/# libretro_directory =/libretro_directory = \"\/usr\/lib\/libretro\"/" $INSTALL/etc/retroarch.cfg
-  	sed -i -e "s/# libretro_info_path =/libretro_info_path = \"\/usr\/lib\/libretro\"/" $INSTALL/etc/retroarch.cfg
+  	sed -i -e "s/# libretro_directory =/libretro_directory = \"\/flash\/lakka\/libretro\"/" $INSTALL/etc/retroarch.cfg
+  	sed -i -e "s/# libretro_info_path =/libretro_info_path = \"\/flash\/lakka\/libretro\"/" $INSTALL/etc/retroarch.cfg
   	sed -i -e "s/# content_database_path =/content_database_path =\/usr\/share\/libretro-database\/rdb/" $INSTALL/etc/retroarch.cfg
   	sed -i -e "s/# assets_directory =/assets_directory =\/usr\/share\/retroarch-assets/" $INSTALL/etc/retroarch.cfg
   	sed -i -e "s/# overlay_directory =/overlay_directory =\/usr\/share\/retroarch-overlays/" $INSTALL/etc/retroarch.cfg
