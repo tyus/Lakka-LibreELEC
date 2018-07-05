@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="dolphin"
-PKG_VERSION="cda77d5"
+PKG_VERSION="b5fa783"
 PKG_REV="1"
-PKG_ARCH="x86_64"
+PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
-PKG_SITE="https://github.com/libretro/dolphin"
+PKG_SITE="https://github.com/aliaspider/dolphin"
 PKG_GIT_URL="$PKG_SITE"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_DEPENDS_TARGET="toolchain cmake:host"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
 PKG_SHORTDESC="Dolphin is a GameCube / Wii emulator, allowing you to play games for these two platforms on PC with improvements."
@@ -33,11 +33,15 @@ PKG_LONGDESC="Dolphin is a GameCube / Wii emulator, allowing you to play games f
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-PKG_USE_CMAKE="no"
+PKG_USE_CMAKE="yes"
+
+PKG_CMAKE_SCRIPT="$PKG_BUILD/CMakeLists.txt"
+
+PKG_CMAKE_OPTS_TARGET="-DLIBRETRO=ON"
 
 make_target() {
-  cd $PKG_BUILD
-  make -C Source/Core/DolphinLibretro
+  cd $PKG_BUILD/.aarch64-libreelec-linux-gnueabi
+  make dolphin_libretro
 }
 
 makeinstall_target() {
