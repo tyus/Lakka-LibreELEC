@@ -43,7 +43,12 @@ pre_make_target() {
   find . -name flags.make -exec sed -i "s:isystem :I:g" \{} \;
 }
 
+make_target() {
+  cd $PKG_BUILD/.aarch64-libreelec-linux-gnueabi
+  make dolphin_libretro
+}
+
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libretro
-  cp Source/Core/DolphinLibretro/dolphin_libretro.so $INSTALL/usr/lib/libretro/
+  cp $PKG_BUILD/.aarch64-libreelec-linux-gnueabi/Binaries/dolphin_libretro.so $INSTALL/usr/lib/libretro/
 }
