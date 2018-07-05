@@ -39,9 +39,8 @@ PKG_CMAKE_SCRIPT="$PKG_BUILD/CMakeLists.txt"
 
 PKG_CMAKE_OPTS_TARGET="-DLIBRETRO=ON"
 
-make_target() {
-  cd $PKG_BUILD/.aarch64-libreelec-linux-gnueabi
-  make dolphin_libretro
+pre_make_target() {
+  find . -name flags.make -exec sed -i "s:isystem :I:g" \{} \;
 }
 
 makeinstall_target() {
