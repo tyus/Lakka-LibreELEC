@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="dolphin"
-PKG_VERSION="7433666"
+PKG_VERSION="5bd5fc1"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/aliaspider/dolphin"
 PKG_GIT_URL="$PKG_SITE"
-PKG_DEPENDS_TARGET="toolchain cmake:host"
+PKG_DEPENDS_TARGET="toolchain cmake:host libusb ffmpeg libevdev $OPENGL"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
 PKG_SHORTDESC="Dolphin is a GameCube / Wii emulator, allowing you to play games for these two platforms on PC with improvements."
@@ -34,6 +34,10 @@ PKG_LONGDESC="Dolphin is a GameCube / Wii emulator, allowing you to play games f
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 PKG_USE_CMAKE="yes"
+
+if [ "BLUETOOTH_SUPPORT" = "yes" ]; then
+  PKG_DEPENDS_TARGET = "$PKG_DEPENDS_TARGET bluez"
+fi
 
 PKG_CMAKE_SCRIPT="$PKG_BUILD/CMakeLists.txt"
 
