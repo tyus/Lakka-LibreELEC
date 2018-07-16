@@ -49,7 +49,7 @@ if [ "$AVAHI_DAEMON" = yes ]; then
 fi
 
 if [ "$PROJECT" = "Switch" ]; then
-   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET pulseaudio"
+   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vulkan-loader pulseaudio"
 fi
 
 if [ "$PROJECT" == "Switch" ]; then
@@ -86,7 +86,7 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-vg \
                            --enable-freetype"
                            
 if [ "$PROJECT" = "Switch" ]; then
-   PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-pulse"
+   PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-pulse --enable-vulkan"
 fi
                          
 
