@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="dosbox"
-PKG_VERSION="dff2757"
+PKG_VERSION="b2ebee6"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -39,7 +39,17 @@ pre_configure_target() {
 }
 
 make_target() {
-  make -f Makefile.libretro
+  if [ "$ARCH" = "aarch64" ]; then
+    make -f Makefile.libretro WITH_DYNAREC=arm64
+  elif [ "$ARCH" = "arm" ]; then
+    make -f Makefile.libretro WITH_DYNAREC=arm
+  elif [ "$ARCH" = "x86_64" ]; then
+    make -f Makefile.libretro WITH_DYNAREC=x86_64
+  elif [ "$ARCH" = "i386" ]; then 
+    make -f Makefile.libretro WITH_DYNAREC=x86
+  else
+    make -f Makefile.libretro
+  fi
 }
 
 makeinstall_target() {
