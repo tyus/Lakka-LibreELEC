@@ -56,14 +56,16 @@
 # setup project defaults
 ################################################################################
 
-  LIBDRM_CONFIG="--enable-tegra-experimental-api"
+    LIBDRM_CONFIG="--enable-tegra-experimental-api"
   
   # build and install ALSA Audio support (yes / no)
     ALSA_SUPPORT="yes"
+    
     PULSEAUDIO_SUPPORT="yes"
 
   # OpenGL(X) implementation to use (no / Mesa)
     OPENGL="mesa"
+    OPENGLES="mesa"
 
   # include uvesafb support (yes / no)
     UVESAFB_SUPPORT="no"

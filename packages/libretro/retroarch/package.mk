@@ -53,7 +53,7 @@ if [ "$PROJECT" = "Switch" ]; then
 fi
 
 if [ "$PROJECT" == "Switch" ]; then
-  RETROARCH_GL="--disable-kms --enable-x11 --disable-wayland --disable-opengles --enable-opengl"
+  RETROARCH_GL="--disable-kms --enable-x11 --disable-wayland --enable-opengles --enable-opengl"
 elif [ "$OPENGLES" == "no" ]; then
   RETROARCH_GL="--enable-kms"
 elif [ "$OPENGLES" == "bcm2835-driver" ]; then
