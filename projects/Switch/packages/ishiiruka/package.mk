@@ -19,11 +19,11 @@
 ################################################################################
 
 PKG_NAME="ishiiruka"
-PKG_VERSION="617ba3d"
+PKG_VERSION="75cb6ee"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
-PKG_SITE="https://github.com/libretro/Ishiiruka"
+PKG_SITE="https://github.com/lakka-switch/Ishiiruka"
 PKG_GIT_URL="$PKG_SITE"
 PKG_DEPENDS_TARGET="toolchain cmake:host libusb ffmpeg libevdev $OPENGL"
 PKG_PRIORITY="optional"
@@ -39,9 +39,8 @@ if [ "$BLUETOOTH_SUPPORT" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bluez"
 fi
 
-PKG_CMAKE_SCRIPT="$PKG_BUILD/CMakeLists.txt"
-
-PKG_CMAKE_OPTS_TARGET="-DLIBRETRO=ON"
+PKG_CMAKE_OPTS_TARGET="-DLIBRETRO=ON -DENABLE_WX=OFF"
+PKG_MAKE_OPTS_TARGET="ishiiruka_libretro"
 
 pre_make_target() {
   # build fix for cross-compiling Dolphin, from Dolphin forums
@@ -50,5 +49,6 @@ pre_make_target() {
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libretro
-  cp $PKG_BUILD/.$TARGET_NAME/ishiiruka_libretro.so $INSTALL/usr/lib/libretro/
+  cp $PKG_BUILD/.$TARGET_NAME/Binaries/ishiiruka_libretro.so $INSTALL/usr/lib/libretro/
+  cp $PKG_DIR/core_info/ishiiruka_libretro.info $INSTALL/usr/lib/libretro/
 }
