@@ -19,11 +19,12 @@
 ################################################################################
 
 PKG_NAME="dosbox"
-PKG_VERSION="b2ebee6"
+PKG_VERSION="b3856be"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
-PKG_SITE="https://github.com/libretro/dosbox-libretro"
+PKG_SITE="https://github.com/fr500/dosbox-svn"
+PKG_GIT_CLONE_BRANCH="libretro"
 PKG_GIT_URL="$PKG_SITE"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
@@ -32,7 +33,7 @@ PKG_SHORTDESC="libretro wrapper for the DOSBox emulator"
 PKG_LONGDESC="An open source DOS emulator for BeOS, Linux, Mac OS X, OS/2, and Windows. Primarily focuses on running DOS Games."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_AUTORECONF="yes"
 
 pre_configure_target() {
   strip_lto
@@ -40,15 +41,15 @@ pre_configure_target() {
 
 make_target() {
   if [ "$ARCH" = "aarch64" ]; then
-    make -f Makefile.libretro WITH_DYNAREC=arm64
+    make target=arm64 WITH_EMBEDDED_SDL=1
   elif [ "$ARCH" = "arm" ]; then
-    make -f Makefile.libretro WITH_DYNAREC=arm
+    make target=arm WITH_EMBEDDED_SDL=1
   elif [ "$ARCH" = "x86_64" ]; then
-    make -f Makefile.libretro WITH_DYNAREC=x86_64
+    make target=x86_64 WITH_EMBEDDED_SDL=1
   elif [ "$ARCH" = "i386" ]; then 
-    make -f Makefile.libretro WITH_DYNAREC=x86
+    make target=x86 WITH_EMBEDDED_SDL=1
   else
-    make -f Makefile.libretro
+    make
   fi
 }
 
