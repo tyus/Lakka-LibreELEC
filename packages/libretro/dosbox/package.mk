@@ -19,12 +19,11 @@
 ################################################################################
 
 PKG_NAME="dosbox"
-PKG_VERSION="b3856be"
+PKG_VERSION="libretro"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/fr500/dosbox-svn"
-PKG_GIT_CLONE_BRANCH="libretro"
 PKG_GIT_URL="$PKG_SITE"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
