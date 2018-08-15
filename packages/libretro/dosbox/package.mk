@@ -32,7 +32,7 @@ PKG_SHORTDESC="libretro wrapper for the DOSBox emulator"
 PKG_LONGDESC="An open source DOS emulator for BeOS, Linux, Mac OS X, OS/2, and Windows. Primarily focuses on running DOS Games."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="yes"
+PKG_AUTORECONF="no"
 
 pre_configure_target() {
   strip_lto
@@ -40,13 +40,13 @@ pre_configure_target() {
 
 make_target() {
   if [ "$ARCH" = "aarch64" ]; then
-    make target=arm64 WITH_EMBEDDED_SDL=1
+    make -C libretro target=arm64 WITH_EMBEDDED_SDL=1
   elif [ "$ARCH" = "arm" ]; then
-    make target=arm WITH_EMBEDDED_SDL=1
+    make -C libretro target=arm WITH_EMBEDDED_SDL=1
   elif [ "$ARCH" = "x86_64" ]; then
-    make target=x86_64 WITH_EMBEDDED_SDL=1
+    make -C libretro target=x86_64 WITH_EMBEDDED_SDL=1
   elif [ "$ARCH" = "i386" ]; then 
-    make target=x86 WITH_EMBEDDED_SDL=1
+    make -C libretro target=x86 WITH_EMBEDDED_SDL=1
   else
     make
   fi
@@ -54,5 +54,5 @@ make_target() {
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libretro
-  cp dosbox_libretro.so $INSTALL/usr/lib/libretro/
+  cp $PKG_BUILD/libretro/dosbox_svn_libretro.so $INSTALL/usr/lib/libretro/dosbox_libretro.so
 }
