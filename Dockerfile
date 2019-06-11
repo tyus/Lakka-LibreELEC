@@ -44,6 +44,7 @@ RUN apt-get update \
 		xsltproc \
 		xz-utils \
 		zip \
+		vim \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /root
